@@ -1,1 +1,1 @@
-# professional-react-and-next.js-course
+# Professional React and Next.js Course
