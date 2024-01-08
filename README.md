@@ -6,6 +6,7 @@
 
 ## 프로젝트
 
-| #   | 프로젝트                                   |
-| --- | ------------------------------------------ |
-| 01  | [Fancy Counter](./fancy-counter/README.md) |
+| #   | 프로젝트                                     |
+| --- | -------------------------------------------- |
+| 01  | [Fancy Counter](./fancy-counter/README.md)   |
+| 02  | [Word Analytics](./word-analytics/README.md) |
