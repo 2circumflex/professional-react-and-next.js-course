@@ -24,8 +24,6 @@ export default function ItemList({
 }) {
   const [sortBy, setSortBy] = useState("default")
 
-  console.log(sortBy)
-
   const sortedItems = useMemo(
     () =>
       [...items].sort((a, b) => {
