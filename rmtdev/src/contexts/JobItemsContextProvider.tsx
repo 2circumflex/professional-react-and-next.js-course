@@ -66,20 +66,31 @@ export default function JobItemsContextProvider({
     setSortBy(newSortBy);
   };
 
+  const contextValue = useMemo(
+    () => ({
+      jobItems,
+      jobItemsSortedAndSliced,
+      isLoading,
+      totalNumberOfResults,
+      totalNumberOfPages,
+      currentPage,
+      sortBy,
+      handleChagePage,
+      handleChangeSortBy,
+    }),
+    [
+      currentPage,
+      isLoading,
+      jobItems,
+      jobItemsSortedAndSliced,
+      sortBy,
+      totalNumberOfPages,
+      totalNumberOfResults,
+    ]
+  );
+
   return (
-    <JobItemsContext.Provider
-      value={{
-        jobItems,
-        jobItemsSortedAndSliced,
-        isLoading,
-        totalNumberOfResults,
-        totalNumberOfPages,
-        currentPage,
-        sortBy,
-        handleChagePage,
-        handleChangeSortBy,
-      }}
-    >
+    <JobItemsContext.Provider value={contextValue}>
       {children}
     </JobItemsContext.Provider>
   );
