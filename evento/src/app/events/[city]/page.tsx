@@ -39,7 +39,7 @@ export default async function EventsPage({
         {city !== "all" && `Events In ${capitalize(city)}`}
       </H1>
 
-      <Suspense fallback={<Loading />}>
+      <Suspense key={city + page} fallback={<Loading />}>
         <EventsList city={city} page={+page} />
       </Suspense>
     </main>
