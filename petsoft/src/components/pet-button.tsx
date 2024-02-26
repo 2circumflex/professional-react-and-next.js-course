@@ -4,10 +4,15 @@ import React from "react";
 
 type PetButtonProps = {
   actionType: "add" | "edit" | "checkout";
+  onClick?: () => void;
   children?: React.ReactNode;
 };
 
-export default function PetButton({ actionType, children }: PetButtonProps) {
+export default function PetButton({
+  actionType,
+  onClick,
+  children,
+}: PetButtonProps) {
   if (actionType === "add") {
     return (
       <Button size="icon">
@@ -21,6 +26,10 @@ export default function PetButton({ actionType, children }: PetButtonProps) {
   }
 
   if (actionType === "checkout") {
-    return <Button variant="secondary">{children}</Button>;
+    return (
+      <Button variant="secondary" onClick={onClick}>
+        {children}
+      </Button>
+    );
   }
 }
