@@ -8,7 +8,7 @@ import PetFormBtn from "./pet-form-btn";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DEFAULT_PET_IMAGE } from "@/lib/constants";
-import { TPetForm, petFormScheme } from "@/lib/validations";
+import { TPetForm, petFormSchema } from "@/lib/validations";
 
 type PetFormProps = {
   actionType: "add" | "edit";
@@ -27,7 +27,14 @@ export default function PetForm({
     getValues,
     formState: { errors },
   } = useForm<TPetForm>({
-    resolver: zodResolver(petFormScheme),
+    resolver: zodResolver(petFormSchema),
+    defaultValues: {
+      name: selectedPet?.name,
+      ownerName: selectedPet?.ownerName,
+      imageUrl: selectedPet?.imageUrl,
+      age: selectedPet?.age,
+      notes: selectedPet?.notes,
+    },
   });
 
   return (
