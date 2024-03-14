@@ -1,6 +1,5 @@
 "use client";
 
-import { Pet } from "@/lib/types";
 import { createContext, useState } from "react";
 
 type SearchContextProviderProps = {
