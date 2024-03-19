@@ -4,15 +4,33 @@ import bcrypt from "bcryptjs";
 import { signIn, signOut } from "@/lib/auth";
 import prisma from "@/lib/db";
 import { sleep } from "@/lib/utils";
-import { petFormSchema, petIdSchema } from "@/lib/validations";
+import { authSchema, petFormSchema, petIdSchema } from "@/lib/validations";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { checkAuth, getPetById } from "@/lib/server-utils";
 
 // --- user actions ---
 
-export async function logIn(formData: FormData) {
-  await signIn("credentials", formData);
+export async function logIn(formData: unknown) {
+  // check if formData is a FormData type
+  if (!(formData instanceof FormData)) {
+    return {
+      message: "Invalida form data.",
+    };
+  }
+
+  // convert formData to an object
+  const formDataObject = Object.fromEntries(formData.entries());
+
+  // validate the object
+  const validatedFormDataObject = authSchema.safeParse(formDataObject);
+  if (!validatedFormDataObject.success) {
+    return {
+      message: "Invalid form data.",
+    };
+  }
+
+  await signIn("credentials", validatedFormDataObject.data);
 
   redirect("/app/dashboard");
 }
