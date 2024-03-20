@@ -6,7 +6,6 @@ import prisma from "@/lib/db";
 import { sleep } from "@/lib/utils";
 import { authSchema, petFormSchema, petIdSchema } from "@/lib/validations";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 import { checkAuth, getPetById } from "@/lib/server-utils";
 import { Prisma } from "@prisma/client";
 import { AuthError } from "next-auth";
@@ -34,17 +33,14 @@ export async function logIn(prevState: unknown, formData: unknown) {
         }
         default: {
           return {
-            message: "Could not sign in.",
+            message: "Error. Could not sign in.",
           };
         }
       }
     }
-    return {
-      message: "Could not sign in.",
-    };
-  }
 
-  redirect("/app/dashboard");
+    throw error; // nextjs redirects throws error, so we need to rethrow it
+  }
 }
 
 export async function signUp(prevState: unknown, formData: unknown) {
