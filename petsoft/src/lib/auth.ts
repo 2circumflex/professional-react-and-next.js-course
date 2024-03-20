@@ -1,4 +1,4 @@
-import { TAuth, authSchema } from "@/lib/validations";
+import { authSchema } from "@/lib/validations";
 import bcrypt from "bcryptjs";
 import NextAuth, { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
