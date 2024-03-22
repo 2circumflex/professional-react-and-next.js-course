@@ -237,7 +237,7 @@ export async function createCheckoutSession() {
     ],
     mode: "payment",
     success_url: `${process.env.CANONICAL_URL}/payment?success=true`,
-    cancel_url: `${process.env.CANONICAL_URL}/payment?cancel=true`,
+    cancel_url: `${process.env.CANONICAL_URL}/payment?cancelled=true`,
   });
 
   // redirect user
